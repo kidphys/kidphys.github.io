@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="MarginApp">
   <head>
     <title>The Margin Loan App</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,7 +12,7 @@
     <link href="style.css" rel="stylesheet">
     <script src="margin.js"></script>
   </head>
-  <body>
+  <body ng-controller="MarginAppController">
 
     <div class='row'>
         <div class="col-md-4">
@@ -23,10 +23,12 @@
                         <tr>
                             <th>Mã</th>
                             <th>Giá trị</th>
+                            <th>Xóa</th>
                         </tr>
-                        <tr>
-                            <td>VND</td>
-                            <td>10000</td>
+                        <tr ng-repeat="stock in account.stockBook">
+                            <td>{{stock.symbol}}</td>
+                            <td>{{stock.amount}}</td>
+                            <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
                         </tr>
                     </table>
                     <div class="input-group">
@@ -38,8 +40,16 @@
                 </div>
             </div>
         </div>
-        <div class="panel col-md-8">
-            <label>Trade Symbol: <input type="text"/></label>
+        <div class="panel col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Mua mã</span>
+              <input type="text" class="form-control" placeholder="VND" aria-describedby="basic-addon1">
+              <span class="input-group-addon" id="basic-addon1">Giá trị</span>
+              <input type="text" class="form-control" placeholder="100000" aria-describedby="basic-addon1">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
         </div>
     </div>
 
@@ -48,43 +58,34 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Nguồn vay nợ</div>
                 <div class="panel-body">
-                    <div class="col-md-4">
+                    <div class="col-md-4" ng-repeat="product in loanCatalog">
+                        <h3>{{product.name}}</h3>
                         <table class="table">
                             <tr>
-                                <th>Good</th>
-                                <th>Bad</th>
-                                <th>Ugly</th>
+                                <th>Mã</th>
+                                <th>Tỉ lệ</th>
+                                <th>Xóa</th>
                             </tr>
-                            <tr>
-                                <td>Love</td>
-                                <td>Eat</td>
-                                <td>Drink</td>
-                            </tr>
-                            <tr>
-                                <td>Me</td>
-                                <td>Mine</td>
-                                <td>My</td>
+                            <tr ng-repeat="loan in product.loans">
+                                <td>{{loan.symbol}}</td>
+                                <td>{{loan.rate}}</td>
+                                <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
                             </tr>
                         </table>
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="SHS 0.5">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Thêm</button>
+                          </span>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <table class="table">
-                            <tr>
-                                <th>Good</th>
-                                <th>Bad</th>
-                                <th>Ugly</th>
-                            </tr>
-                            <tr>
-                                <td>Love</td>
-                                <td>Eat</td>
-                                <td>Drink</td>
-                            </tr>
-                            <tr>
-                                <td>Me</td>
-                                <td>Mine</td>
-                                <td>My</td>
-                            </tr>
-                        </table>
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Thêm nguồn</button>
+                          </span>
+                          <input type="text" class="form-control" placeholder="Tn">
+                        </div>
                     </div>
                 </div>
             </div>
