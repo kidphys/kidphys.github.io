@@ -22,5 +22,13 @@ marginApp.controller('MarginAppController', function ($scope) {
                 {'symbol': 'SSI', 'rate': 0.5},
             ]
         },
-    ]
+    ];
+
+    $scope.removeStock = function(stock){
+        var stockBook = $scope.account.stockBook;
+        index = stockBook.indexOf(stock);
+        if (index != -1){
+            stockBook.splice(index, 1);
+        }
+    }
 });

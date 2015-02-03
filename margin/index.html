@@ -28,7 +28,7 @@
                         <tr ng-repeat="stock in account.stockBook">
                             <td>{{stock.symbol}}</td>
                             <td>{{stock.amount}}</td>
-                            <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
+                            <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"ng-click="removeStock(stock)"></a></td>
                         </tr>
                     </table>
                     <div class="input-group">
