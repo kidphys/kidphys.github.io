@@ -28,13 +28,13 @@
                         <tr ng-repeat="stock in account.stockBook">
                             <td>{{stock.symbol}}</td>
                             <td>{{stock.amount}}</td>
-                            <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"ng-click="removeStock(stock)"></a></td>
+                            <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"ng-click="removeStock(account.stockBook, stock)"></a></td>
                         </tr>
                     </table>
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="VND 1000,000">
+                      <input type="text" class="form-control" placeholder="{{new_stock}}" ng-model="new_stock">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Thêm</button>
+                        <button ng-click="add_stock(account.stockBook, new_stock)" class="btn btn-default" type="button">Thêm</button>
                       </span>
                     </div>
                 </div>
@@ -53,6 +53,7 @@
         </div>
     </div>
 
+    <!-- Loan Catalog -->
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -66,16 +67,16 @@
                                 <th>Tỉ lệ</th>
                                 <th>Xóa</th>
                             </tr>
-                            <tr ng-repeat="loan in product.loans">
-                                <td>{{loan.symbol}}</td>
-                                <td>{{loan.rate}}</td>
-                                <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
+                            <tr ng-repeat="rate in product.rates">
+                                <td>{{rate.symbol}}</td>
+                                <td>{{rate.rate}}</td>
+                                <td><a href="#" class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="remove_rate(product.rates, rate)"></a></td>
                             </tr>
                         </table>
                         <div class="input-group">
-                          <input type="text" class="form-control" placeholder="SHS 0.5">
+                          <input type="text" ng-model="new_rate_str" class="form-control" placeholder="{{new_rate_str}}">
                           <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Thêm</button>
+                            <button class="btn btn-default" type="button" ng-click="add_rate(product.rates, new_rate_str)">Thêm</button>
                           </span>
                         </div>
                     </div>

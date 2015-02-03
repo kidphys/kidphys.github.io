@@ -10,25 +10,44 @@ marginApp.controller('MarginAppController', function ($scope) {
     $scope.loanCatalog = [
         {
             'name': 'mr',
-            'loans': [
+            'rates': [
                 {'symbol': 'VND', 'rate': 0.5},
                 {'symbol': 'SSI', 'rate': 0.6},
             ]
         },
         {
             'name': 'df',
-            'loans': [
+            'rates': [
                 {'symbol': 'ACB', 'rate': 0.3},
                 {'symbol': 'SSI', 'rate': 0.5},
             ]
         },
     ];
 
-    $scope.removeStock = function(stock){
-        var stockBook = $scope.account.stockBook;
-        index = stockBook.indexOf(stock);
+
+    $scope.new_stock = "VND 100000";
+    $scope.add_stock = function(stockBook, str){
+        var stock = str.split(' ');
+        stockBook.push({'symbol': stock[0], 'amount': parseInt(stock[1])});
+    };
+
+    $scope.removeStock = function(stockBook, stock){
+        var index = stockBook.indexOf(stock);
         if (index != -1){
             stockBook.splice(index, 1);
+        }
+    };
+
+    $scope.new_rate_str = "SHS 0.5";
+    $scope.add_rate = function(rates, str){
+        var rate = str.split(' ');
+        rates.push({'symbol': rate[0], 'rate': parseFloat(rate[1])});
+    }
+
+    $scope.remove_rate = function(rates, rate){
+        var index = rates.indexOf(rate);
+        if (index != -1){
+            rates.splice(index, 1);
         }
     }
 });
